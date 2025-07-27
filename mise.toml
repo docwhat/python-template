@@ -1,0 +1,48 @@
+[env]
+PROJECT_NAME = "{{ config_root | basename }}"
+_.python.venv = { path = ".venv", create = true }
+
+[settings]
+experimental = true
+
+[settings.python]
+uv_venv_auto = true
+
+[tools]
+python = "{{ get_env(name='PYTHON_VERSION', default='3') }}"
+uv = "latest"
+
+[tools."http:trunk"]
+version = "latest"
+url = "https://trunk.io/releases/trunk"
+
+[tasks.bootstrap]
+alias = "b"
+description = "Install dependencies & bootstrap the project"
+run = "uv pip install -r requirements.txt"
+
+[tasks.run]
+description = "Run the application"
+run = "uv run src/app.py"
+
+[tasks.test]
+alias = "t"
+description = "Run tests"
+run = "uv run pytest src/"
+
+[tasks.format]
+alias = "fmt"
+description = "Lint the code"
+run = "trunk fmt"
+
+[tasks.check]
+alias = "chk"
+description = "Static code analysis; append --fix to automatically fix issues"
+run = "trunk check"
+
+[tasks.info]
+description = "Print project information"
+run = '''
+echo "Project: $PROJECT_NAME"
+echo "Virtual Environment: $VIRTUAL_ENV"
+'''
