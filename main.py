@@ -1,5 +1,9 @@
+def main_text() -> str:
+    return "Hello from app!"
+
+
 def main():
-    print("Hello from app!")
+    print(main_text)
 
 
 if __name__ == "__main__":

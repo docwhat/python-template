@@ -2,5 +2,6 @@
   "debug.javascript.defaultRuntimeExecutable": {
     "pwa-node": "/Users/docwhat/.local/share/mise/shims/node"
   },
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv"
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+  "python.analysis.typeCheckingMode": "standard"
 }
