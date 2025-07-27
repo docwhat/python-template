@@ -4,6 +4,7 @@ _.python.venv = { path = ".venv", create = true }
 
 [settings]
 experimental = true
+idiomatic_version_file_enable_tools = ["python"]
 
 [settings.python]
 uv_venv_auto = true
@@ -19,7 +20,7 @@ url = "https://trunk.io/releases/trunk"
 [tasks.bootstrap]
 alias = "b"
 description = "Install dependencies & bootstrap the project"
-run = "uv pip install -r requirements.txt"
+run = "uv sync"
 
 [tasks.run]
 description = "Run the application"
@@ -35,10 +36,14 @@ alias = "fmt"
 description = "Lint the code"
 run = "trunk fmt"
 
-[tasks.check]
-alias = "chk"
-description = "Static code analysis; append --fix to automatically fix issues"
+[tasks.lint]
+alias = "l"
+description = "Lint and analyze the code"
 run = "trunk check"
+
+[tasks.ci]
+description = "Run CI tasks"
+depends = ["test", "lint", "format"]
 
 [tasks.info]
 description = "Print project information"
